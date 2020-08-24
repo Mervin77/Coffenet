@@ -23,7 +23,7 @@ namespace Infrastructure.Data
 
         public async Task<IReadOnlyList<T>> ListAllAsync()
         {
-            return await _context.Set<T>().ToListAsync(); 
+            return await _context.Set<T>().ToListAsync();
         }
 
         public async Task<T> GetEntityWithSpec(ISpecifications<T> spec)
@@ -34,10 +34,13 @@ namespace Infrastructure.Data
         {
             return await ApplySpecification(spec).ToListAsync();
         }
-
+        public async Task<int> CountAsync(ISpecifications<T> spec)
+        {
+            return await ApplySpecification(spec).CountAsync();
+        }
         private IQueryable<T> ApplySpecification(ISpecifications<T> spec)
         {
-            return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(),spec);
+            return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), spec);
         }
     }
 }
