@@ -13,11 +13,11 @@ namespace API.Controllers
 
         }
 
-        [HttpGet("Notfound")]
+        [HttpGet("notfound")]
         public ActionResult GetNotFoundRequest()
         {
             var thing = _context.Products.Find(42);
-            if(thing == null)
+            if (thing == null)
             {
                 return NotFound(new ApiResponse(404));
             }
@@ -31,12 +31,13 @@ namespace API.Controllers
 
             return Ok();
         }
+
         [HttpGet("badrequest")]
         public ActionResult GetBadRequest()
         {
             return BadRequest(new ApiResponse(400));
         }
-        
+
         [HttpGet("badrequest/{id}")]
         public ActionResult GetNotFoundRequest(int id)
         {

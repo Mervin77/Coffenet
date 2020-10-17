@@ -36,7 +36,7 @@ namespace API.Controllers
 
         [HttpGet]
         public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts(
-            [FromQuery]ProductSpecsParams productParams)
+            [FromQuery] ProductSpecsParams productParams)
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(productParams);
 
@@ -49,7 +49,7 @@ namespace API.Controllers
             var data = _mapper
                 .Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(Products);
 
-            return Ok(new Pagination<ProductToReturnDto>(productParams.PageIndex, 
+            return Ok(new Pagination<ProductToReturnDto>(productParams.PageIndex,
                 productParams.PageSize, totalItems, data));
         }
 
